@@ -1,0 +1,5 @@
+B,dnmReplId
+C,originalLetter
+D,replacementLetter
+E,replacementEffDate
+F,replacementExpDate

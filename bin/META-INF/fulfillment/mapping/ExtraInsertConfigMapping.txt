@@ -1,0 +1,6 @@
+B,extraInsertId
+C,extraInsertCode
+D,extraInsertName
+E,dataElementId
+F,effectiveDate
+G,expiryDate

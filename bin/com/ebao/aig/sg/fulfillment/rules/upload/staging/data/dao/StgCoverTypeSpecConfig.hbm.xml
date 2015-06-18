@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgCoverTypeSpecConfig"
+    table="STG_COVER_TYPE_SPEC_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="coverTypeRuleId"
+        type="java.lang.Long"
+        column="COVER_TYPE_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_COVER_TYPE_SPEC_CONFIG__CO</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="coverTypeCode"
+        type="java.lang.String"
+        column="COVER_TYPE_CODE"
+        length="1000"
+    />
+    <property
+        name="availableFlag"
+        type="java.lang.String"
+        column="AVAILABLE_FLAG"
+        length="1000"
+    />
+    <property
+        name="dnmFlag"
+        type="java.lang.String"
+        column="DNM_FLAG"
+        length="1000"
+    />
+    <property
+        name="description"
+        type="java.lang.String"
+        column="DESCRIPTION"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

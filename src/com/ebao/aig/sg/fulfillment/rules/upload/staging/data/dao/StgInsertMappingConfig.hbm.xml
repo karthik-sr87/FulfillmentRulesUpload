@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgInsertMappingConfig"
+    table="STG_INSERT_MAPPING_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="listId"
+        type="java.lang.Long"
+        column="LIST_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_INSERT_MAPPING_CONFIG__LIS</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="offlineRuleId"
+        type="java.lang.Long"
+        column="OFFLINE_RULE_ID"
+        length="10"
+    />
+    <property
+        name="voucherRuleId"
+        type="java.lang.Long"
+        column="VOUCHER_RULE_ID"
+        length="10"
+    />
+    <property
+        name="campaignRuleId"
+        type="java.lang.Long"
+        column="CAMPAIGN_RULE_ID"
+        length="10"
+    />
+    <property
+        name="insertName"
+        type="java.lang.String"
+        column="INSERT_NAME"
+        length="1000"
+    />
+    <property
+        name="sequenceNo"
+        type="java.lang.String"
+        column="SEQUENCE_NO"
+        length="1000"
+    />
+    <property
+        name="insertionEffectiveDate"
+        type="java.util.Date"
+        column="INSERTION_EFFECTIVE_DATE"
+        length="7"
+    />
+    <property
+        name="insertionExpiryDate"
+        type="java.util.Date"
+        column="INSERTION_EXPIRY_DATE"
+        length="7"
+    />
+    <property
+        name="excludeReFulfillment"
+        type="java.lang.String"
+        column="EXCLUDE_RE_FULFILLMENT"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

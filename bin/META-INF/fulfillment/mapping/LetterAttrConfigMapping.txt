@@ -1,0 +1,5 @@
+B,letterAttributeId
+C,letterId
+D,letterAttributeName
+E,letterAttributeType
+F,content

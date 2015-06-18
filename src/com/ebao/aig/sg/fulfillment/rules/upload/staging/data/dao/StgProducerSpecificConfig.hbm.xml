@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgProducerSpecificConfig"
+    table="STG_PRODUCER_SPECIFIC_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="producerRuleId"
+        type="java.lang.Long"
+        column="PRODUCER_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_PRODUCER_SPECIFIC_CONFIG__</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="producerType"
+        type="java.lang.String"
+        column="PRODUCER_TYPE"
+        length="1000"
+    />
+    <property
+        name="producerCodeFrom"
+        type="java.lang.String"
+        column="PRODUCER_CODE_FROM"
+        length="1000"
+    />
+    <property
+        name="producerCodeTo"
+        type="java.lang.String"
+        column="PRODUCER_CODE_TO"
+        length="1000"
+    />
+    <property
+        name="producersExcluded"
+        type="java.lang.String"
+        column="PRODUCERS_EXCLUDED"
+        length="1000"
+    />
+    <property
+        name="letterId"
+        type="java.lang.String"
+        column="LETTER_ID"
+        length="1000"
+    />
+    <property
+        name="description"
+        type="java.lang.String"
+        column="DESCRIPTION"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

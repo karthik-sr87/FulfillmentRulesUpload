@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.staging.data.vo.StgPlatformSpecificConfig"
+    table="STG_PLATFORM_SPECIFIC_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="platformRuleId"
+        type="java.lang.Long"
+        column="PLATFORM_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_PLATFORM_SPECIFIC_CONFIG__</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="platform"
+        type="java.lang.String"
+        column="PLATFORM"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

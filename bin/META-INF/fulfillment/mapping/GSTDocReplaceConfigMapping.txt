@@ -1,0 +1,5 @@
+B,gstReplaceRuleId
+C,originalDocId
+D,replacementDocId
+E,replacementEffDate
+F,replacementExpDate

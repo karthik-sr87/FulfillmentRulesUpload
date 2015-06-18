@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgCustSmsExcepConfig"
+    table="T_SG_CUST_SMS_EXCEP_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="custSmsExpId"
+        type="java.lang.Long"
+        column="CUST_SMS_EXP_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_CUST_SMS_EXCEP_CONFIG__CU</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="lobCode"
+        type="java.lang.Long"
+        column="LOB_CODE"
+        length="10"
+    />
+    <property
+        name="productCode"
+        type="java.lang.String"
+        column="PRODUCT_CODE"
+        length="20"
+    />
+    <property
+        name="planGroupId"
+        type="java.lang.Long"
+        column="PLAN_GROUP_ID"
+        length="10"
+    />
+    <property
+        name="plans"
+        type="java.lang.Long"
+        column="PLANS"
+        length="10"
+    />
+    <property
+        name="producerType"
+        type="java.lang.Long"
+        column="PRODUCER_TYPE"
+        length="10"
+    />
+    <property
+        name="producerCodeFrom"
+        type="java.lang.String"
+        column="PRODUCER_CODE_FROM"
+        length="30"
+    />
+    <property
+        name="producerCodeTo"
+        type="java.lang.String"
+        column="PRODUCER_CODE_TO"
+        length="30"
+    />
+    <property
+        name="producersExcluded"
+        type="java.lang.String"
+        column="PRODUCERS_EXCLUDED"
+        length="1000"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        length="7"
+    />
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

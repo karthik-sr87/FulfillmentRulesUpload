@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgOfflineConfig"
+    table="T_SG_OFFLINE_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="offlineRuleId"
+        type="java.lang.Long"
+        column="OFFLINE_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_OFFLINE_CONFIG__OFFLINE_R</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="documentClubType"
+        type="java.lang.Integer"
+        column="DOCUMENT_CLUB_TYPE"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="envelope"
+        type="java.lang.Integer"
+        column="ENVELOPE"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="colour"
+        type="java.lang.Integer"
+        column="COLOUR"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="default-value">	new java.util.Date()
+</meta>
+    </property>
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        not-null="true"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

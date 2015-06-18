@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgFrmsMasterConfig"
+    table="T_SG_FRMS_MASTER_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_FRMS_MASTER_CONFIG__RULE_</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="transactionType"
+        type="java.lang.Integer"
+        column="TRANSACTION_TYPE"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="documentType"
+        type="java.lang.Integer"
+        column="DOCUMENT_TYPE"
+        not-null="true"
+        length="5"
+    />
+    <property
+        name="lobId"
+        type="java.lang.String"
+        column="LOB_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="productCode"
+        type="java.lang.String"
+        column="PRODUCT_CODE"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="planGroupId"
+        type="java.lang.Long"
+        column="PLAN_GROUP_ID"
+        length="10"
+    />
+    <property
+        name="planName"
+        type="java.lang.Long"
+        column="PLAN_NAME"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="effectiveDate"
+        type="java.util.Date"
+        column="EFFECTIVE_DATE"
+        not-null="true"
+        length="7"
+    />
+    <property
+        name="expiryDate"
+        type="java.util.Date"
+        column="EXPIRY_DATE"
+        not-null="true"
+        length="7"
+    />
+    <property
+        name="statusId"
+        type="java.lang.Integer"
+        column="STATUS_ID"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="priority"
+        type="java.lang.Integer"
+        column="PRIORITY"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="cvrTypeRuleAplcbl"
+        type="java.lang.Integer"
+        column="CVR_TYPE_RULE_APLCBL"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="platformSpcRuleChk"
+        type="java.lang.Integer"
+        column="PLATFORM_SPC_RULE_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="producerRuleChk"
+        type="java.lang.Integer"
+        column="PRODUCER_RULE_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="autoSpcRuleChk"
+        type="java.lang.Integer"
+        column="AUTO_SPC_RULE_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="voucherAplcbl"
+        type="java.lang.Integer"
+        column="VOUCHER_APLCBL"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="checkCampaign"
+        type="java.lang.Integer"
+        column="CHECK_CAMPAIGN"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="producerExpChk"
+        type="java.lang.Integer"
+        column="PRODUCER_EXP_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="gstProducerChk"
+        type="java.lang.Integer"
+        column="GST_PRODUCER_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="dnmChk"
+        type="java.lang.Integer"
+        column="DNM_CHK"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="ruleDescription"
+        type="java.lang.String"
+        column="RULE_DESCRIPTION"
+        not-null="true"
+        length="200"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="default-value">	new java.util.Date()
+</meta>
+    </property>
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        not-null="true"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

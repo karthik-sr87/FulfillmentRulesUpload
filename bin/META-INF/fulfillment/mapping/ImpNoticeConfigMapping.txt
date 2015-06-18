@@ -1,0 +1,8 @@
+B,impNoticeId
+C,producerSubType
+D,vehicleType
+E,templateId
+F,impNoticeLetterId
+G,sequenceValue
+H,effectiveDate
+I,expiryDate

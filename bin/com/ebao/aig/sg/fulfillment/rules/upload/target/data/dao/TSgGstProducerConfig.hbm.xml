@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgGstProducerConfig"
+    table="T_SG_GST_PRODUCER_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="gstProducerRuleId"
+        type="java.lang.Long"
+        column="GST_PRODUCER_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_GST_PRODUCER_CONFIG__GST_</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="gstProducerCode"
+        type="java.lang.String"
+        column="GST_PRODUCER_CODE"
+        length="30"
+    />
+    <property
+        name="bigProducerFlag"
+        type="java.lang.Integer"
+        column="BIG_PRODUCER_FLAG"
+        length="2"
+    />
+    <property
+        name="effectiveDate"
+        type="java.util.Date"
+        column="EFFECTIVE_DATE"
+        length="7"
+    />
+    <property
+        name="expiryDate"
+        type="java.util.Date"
+        column="EXPIRY_DATE"
+        length="7"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        length="7"
+    />
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

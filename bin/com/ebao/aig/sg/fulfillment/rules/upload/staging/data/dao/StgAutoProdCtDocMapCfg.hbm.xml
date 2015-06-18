@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgAutoProdCtDocMapCfg"
+    table="STG_AUTO_PROD_CT_DOC_MAP_CFG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="autoProducerCtMapId"
+        type="java.lang.Long"
+        column="AUTO_PRODUCER_CT_MAP_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_AUTO_PROD_CT_DOC_MAP_CFG__</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        length="10"
+    />
+    <property
+        name="coverTypeRuleId"
+        type="java.lang.Long"
+        column="COVER_TYPE_RULE_ID"
+        length="10"
+    />
+    <property
+        name="autoRuleId"
+        type="java.lang.Long"
+        column="AUTO_RULE_ID"
+        length="10"
+    />
+    <property
+        name="producerRuleId"
+        type="java.lang.Long"
+        column="PRODUCER_RULE_ID"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

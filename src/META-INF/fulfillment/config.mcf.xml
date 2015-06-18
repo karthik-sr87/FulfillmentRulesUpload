@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<localizers>
+		<register class="com.ebao.foundation.module.configframework.support.cache.ReferenceCacheConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.struct.StructConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.contextinit.ContextInitialReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.css.CssReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.hibernate3.Hibernate3InterceptorConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.hibernate3.Hibernate3ReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.aop.EbaoAopReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.GeneralReferencePropertiesConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.ratetable.RatetableDefineLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.spring.SingleLayerSpringReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.jbpm3.WorkFlowRefenerceConfigDelegateLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.log4j.Log4jReferencePropertiesConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.printserver.PrintServerReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.hibernate3.Hibernate3ReferenceXmlConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.jsp.DefaultListenerConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.jsp.DefaultFilterConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.ldap.LDAPReferenceConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.sensitive.SensitiveTypeConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.ids.IDSThresholdConfigLocalizer" />
+		<register class="com.ebao.foundation.module.configframework.support.license.LicenseCollector" />
+	</localizers>
+	<!--<struts>
+		<include module-context="config" relative-path="/struts/struts-config.xml" />
+		<include module-context="config/demo/found" relative-path="/struts/struts-config-demo-found.xml" />
+		<include module-context="config/demo" relative-path="/struts/struts-config-demo.xml" />
+		<include module-context="config/pub" relative-path="/struts/struts-config-pub.xml" />
+		<include module-context="config/tool" relative-path="/struts/struts-config-tool.xml" />
+		<include module-context="config/sys" relative-path="/struts/struts-config-sys.xml" />
+
+		<include module-context="config/sys" relative-path="/struts/struts-config-pr.xml" />
+
+		<include module-context="config/sys" relative-path="/struts/struts-config-or.xml" />
+ 
+		<include module-context="config/sys" relative-path="/struts/struts-config-au.xml" />
+		
+		<include module-context="config/sys" relative-path="/struts/struts-config-job.xml" />
+ 
+		<include module-context="config/navigationbar" relative-path="/struts/struts-config-bar.xml" />
+	</struts>
+	<spring>
+		<include relative-path="/spring/sysadmin-application-context.xml" />
+		<include relative-path="/spring/applicationContext-spring-security-cas.xml" />
+		<include relative-path="/spring/applicationContext-spring-security.xml" />
+		<include relative-path="/spring/ids-applicationContext.xml" />
+		<include relative-path="/spring/usermgmt-application-context.xml" />
+		<include relative-path="/spring/beans-foundation-v4-proxy.xml" />
+		<include relative-path="/spring/schedule-jobs.xml" />
+		<include relative-path="/spring/spring-cache.xml" />
+		<include relative-path="/spring/apm-beans.xml" />
+		<include relative-path="/spring/applicationContext-foundation.xml" />
+	</spring>-->
+	<spring>
+		<include relative-path="/spring/fulfillment-application-context.xml" />
+	</spring>
+	<env>
+		<include relative-path="/env/env.properties" />
+		<include relative-path="/env/security.properties" />
+		<include relative-path="/env/job.properties" />
+		<include relative-path="/config/FulfillmentConfig.properties" />
+		<include relative-path="/config/ModuleProcessorConfig.properties" />
+		<include relative-path="/mapping/ExcelSheetNoMapping.properties" />
+	</env>
+	<!--<caches>
+		<include relative-path="/cache/cache.xml" />
+	</caches>
+	<contextInital>
+		<include relative-path="/contextLoad-conf.xml" />
+	</contextInital>
+	<css-config>
+		<include relative-path="/css-config.properties" />
+ 	</css-config>
+ 	
+ 	<currencyFormat>
+ 		<include relative-path="/currencyFormat.properties" />
+ 	</currencyFormat>
+ 	
+ 	<hibernate3>
+ 		<interceptorFilter>
+ 			<include relative-path="/hibernate/InterceptorFilter.cfg.xml" />
+ 		</interceptorFilter>
+ 		<include relative-path="/hibernate/hibernate.v3.properties" />
+ 	</hibernate3>
+ 
+ 	<jspConverter>
+ 		<include relative-path="/jspconverter.properties" />
+ 	</jspConverter>
+ 	
+	<ebao-aop>
+		<include relative-path="/aop/aop.xml" />
+		<include relative-path="/aop/aop2.xml" />
+	</ebao-aop>
+	<locale>
+		<multiCompanySupport>
+			<include relative-path="/locale/MultiCompanySupport.properties" />
+		</multiCompanySupport>
+	</locale>
+	<newface>
+		<include relative-path="/locale/newface.properties" />
+	</newface>
+	<performanceMonitor>
+		<include relative-path="/PerformanceMonitor.properties" />
+	</performanceMonitor>-->
+	
+	<datasource>
+		<include relative-path="/database.properties" />
+	</datasource>
+	<!--<ldap>
+		<include relative-path="/ldap.properties" />
+	</ldap>
+	<encrypt>
+		<include relative-path="/encrypt.properties" />
+	</encrypt>	
+	<sysadmin>
+		<include relative-path="/sysadmin/admin.properties" />
+	</sysadmin>
+	<sensitive>
+		<include relative-path="/sensitive.type.xml" />
+	</sensitive>
+	<web-config>
+		<listener>
+			<include relative-path="/jsp/listeners.xml" />
+		</listener>
+		<filter>
+			<include relative-path="/jsp/filters.xml" />
+		</filter>
+	</web-config>
+	<ids>
+		<include relative-path="/ids/ids.threshold.xml"/>
+	</ids>
+	<license>
+		<include relative-path="/license/license.xml"/>
+	</license>-->
+</module>

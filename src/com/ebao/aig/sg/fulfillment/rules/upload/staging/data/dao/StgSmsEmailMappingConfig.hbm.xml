@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.staging.data.vo.StgSmsEmailMappingConfig"
+    table="STG_SMS_EMAIL_MAPPING_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <composite-id>
+        <key-property
+            name="ruleId"
+            column="RULE_ID"
+            type="java.lang.Long"
+            length="10"
+        />
+        <key-property
+            name="customerSmsFlag"
+            column="CUSTOMER_SMS_FLAG"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="customerSmsTemplateId"
+            column="CUSTOMER_SMS_TEMPLATE_ID"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="customerEmailFlag"
+            column="CUSTOMER_EMAIL_FLAG"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="customerEmailTemplateId"
+            column="CUSTOMER_EMAIL_TEMPLATE_ID"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="producerSmsFlag"
+            column="PRODUCER_SMS_FLAG"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="producerSmsTemplateId"
+            column="PRODUCER_SMS_TEMPLATE_ID"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="producerEmailFlag"
+            column="PRODUCER_EMAIL_FLAG"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="producerEmailTemplateId"
+            column="PRODUCER_EMAIL_TEMPLATE_ID"
+            type="java.lang.String"
+            length="1000"
+        />
+    </composite-id>
+
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,10 @@
+B,pdcrExcpRuleId
+C,lobId
+D,pdcrCodeFrom
+E,pdcrCodeTo
+F,excludePdcrCode
+G,sprsCustEmail
+H,sprsCustOffline
+I,sprsPdcrOffline
+J,effectiveDate
+K,expiryDate

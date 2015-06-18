@@ -1,0 +1,6 @@
+B,voucherId
+C,voucherCode
+D,voucherName
+E,dataElementId
+F,effectiveDate
+G,expiryDate

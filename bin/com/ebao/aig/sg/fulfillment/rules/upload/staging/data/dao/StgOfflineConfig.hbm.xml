@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.staging.data.vo.StgOfflineConfig"
+    table="STG_OFFLINE_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="offlineRuleId"
+        type="java.lang.Long"
+        column="OFFLINE_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_OFFLINE_CONFIG__OFFLINE_RU</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="documentClubType"
+        type="java.lang.String"
+        column="DOCUMENT_CLUB_TYPE"
+        length="1000"
+    />
+    <property
+        name="envelope"
+        type="java.lang.String"
+        column="ENVELOPE"
+        length="1000"
+    />
+    <property
+        name="colour"
+        type="java.lang.String"
+        column="COLOUR"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

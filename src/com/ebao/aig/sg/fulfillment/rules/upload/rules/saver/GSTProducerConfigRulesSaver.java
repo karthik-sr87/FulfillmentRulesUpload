@@ -1,0 +1,51 @@
+package com.ebao.aig.sg.fulfillment.rules.upload.rules.saver;
+
+import java.util.Iterator;
+import java.util.List;
+
+import javax.transaction.UserTransaction;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.ebao.aig.sg.fulfillment.rules.upload.target.data.dao.TSgGstProducerConfigDaoFactory;
+import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgGstProducerConfig;
+import com.ebao.pub.util.Trans;
+
+public class GSTProducerConfigRulesSaver {
+
+	private static final Log LOG = LogFactory.getLog(GSTProducerConfigRulesSaver.class);
+	
+	public void saveRules(List ruleList)throws Exception{
+		Iterator ruleListItr = ruleList.iterator();
+		while(ruleListItr.hasNext()){
+			TSgGstProducerConfig configVO = (TSgGstProducerConfig)ruleListItr.next();
+			if(configVO.getErrorList()==null||configVO.getErrorList().isEmpty()){
+				LOG.info("Start Save Rule ID : "+configVO.getGstProducerRuleId());
+				saveRule(configVO);
+				LOG.info("Finished Processing Rule ID : "+configVO.getGstProducerRuleId());
+			}
+		}
+	}
+	
+	public void saveRule(TSgGstProducerConfig configVO)throws Exception{
+		UserTransaction ut = null;
+		try{
+			ut = Trans.getUserTransaction();
+			ut.begin();
+			TSgGstProducerConfigDaoFactory.getTSgGstProducerConfigDao().create(configVO);
+			ut.commit();
+		}catch(Exception ex){
+			LOG.error("Exception in Saving GST Producer Config rule ID : "+configVO.getGstProducerRuleId()+" Exception Message : "+ex.getMessage());
+			ex.printStackTrace();
+			if(ut!=null){
+				try{
+					ut.rollback();
+				}catch(Exception e){
+					LOG.error("Unable to Rollback : "+e.getMessage());
+				}
+			}
+		}
+	}
+
+}

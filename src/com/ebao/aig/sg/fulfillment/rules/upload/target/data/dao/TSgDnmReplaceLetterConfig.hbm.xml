@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgDnmReplaceLetterConfig"
+    table="T_SG_DNM_REPLACE_LETTER_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="dnmReplId"
+        type="java.lang.Long"
+        column="DNM_REPL_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_DNM_REPLACE_LETTER_CONFIG</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="originalLetter"
+        type="java.lang.Long"
+        column="ORIGINAL_LETTER"
+        length="10"
+    />
+    <property
+        name="replacementLetter"
+        type="java.lang.Long"
+        column="REPLACEMENT_LETTER"
+        length="10"
+    />
+    <property
+        name="replacementEffDate"
+        type="java.util.Date"
+        column="REPLACEMENT_EFF_DATE"
+        length="7"
+    />
+    <property
+        name="replacementExpDate"
+        type="java.util.Date"
+        column="REPLACEMENT_EXP_DATE"
+        length="7"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        length="7"
+    />
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

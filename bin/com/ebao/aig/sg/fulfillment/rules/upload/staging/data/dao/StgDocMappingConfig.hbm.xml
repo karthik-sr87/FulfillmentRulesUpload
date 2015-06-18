@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgDocMappingConfig"
+    table="STG_DOC_MAPPING_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="docRuleId"
+        type="java.lang.Long"
+        column="DOC_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_DOC_MAPPING_CONFIG__DOC_RU</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        length="10"
+    />
+    <property
+        name="coverTypeRuleId"
+        type="java.lang.Long"
+        column="COVER_TYPE_RULE_ID"
+        length="10"
+    />
+    <property
+        name="platformRuleId"
+        type="java.lang.Long"
+        column="PLATFORM_RULE_ID"
+        length="10"
+    />
+    <property
+        name="campaignRuleId"
+        type="java.lang.Long"
+        column="CAMPAIGN_RULE_ID"
+        length="10"
+    />
+    <property
+        name="autoProducerCtMapId"
+        type="java.lang.Long"
+        column="AUTO_PRODUCER_CT_MAP_ID"
+        length="10"
+    />
+    <property
+        name="templateId"
+        type="java.lang.String"
+        column="TEMPLATE_ID"
+        length="1000"
+    />
+    <property
+        name="sequenceNo"
+        type="java.lang.String"
+        column="SEQUENCE_NO"
+        length="1000"
+    />
+    <property
+        name="documentClubType"
+        type="java.lang.String"
+        column="DOCUMENT_CLUB_TYPE"
+        length="1000"
+    />
+    <property
+        name="recipient"
+        type="java.lang.String"
+        column="RECIPIENT"
+        length="1000"
+    />
+    <property
+        name="marketingLetter"
+        type="java.lang.String"
+        column="MARKETING_LETTER"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

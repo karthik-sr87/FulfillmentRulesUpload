@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgVoucherMappingConfig"
+    table="STG_VOUCHER_MAPPING_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="voucherRuleId"
+        type="java.lang.Long"
+        column="VOUCHER_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_VOUCHER_MAPPING_CONFIG__VO</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="producerType"
+        type="java.lang.String"
+        column="PRODUCER_TYPE"
+        length="1000"
+    />
+    <property
+        name="producerCodeFrom"
+        type="java.lang.String"
+        column="PRODUCER_CODE_FROM"
+        length="1000"
+    />
+    <property
+        name="producerCodeTo"
+        type="java.lang.String"
+        column="PRODUCER_CODE_TO"
+        length="1000"
+    />
+    <property
+        name="producerExcluded"
+        type="java.lang.String"
+        column="PRODUCER_EXCLUDED"
+        length="1000"
+    />
+    <property
+        name="ruleEffectiveDate"
+        type="java.util.Date"
+        column="RULE_EFFECTIVE_DATE"
+        length="7"
+    />
+    <property
+        name="ruleExpiryDate"
+        type="java.util.Date"
+        column="RULE_EXPIRY_DATE"
+        length="7"
+    />
+
+</class>
+</hibernate-mapping>

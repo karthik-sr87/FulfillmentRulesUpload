@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+<bean name="ExcelSheetCallback" class="com.ebao.aig.sg.fulfillment.rules.upload.handler.ExcelSheetCallbackImpl"/>
+<bean name="FRMSConfigVOConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.AutoFRMSVOToConfigVOConvertor"/>
+<bean name="CustEmailExpConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.CustEmailExpConfigConvertor"/>
+<bean name="CustSMSExpConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.CustSMSExpConfigConvertor"/>
+<bean name="DNMReplacementConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.DNMReplacementConfigConvertor"/>
+<bean name="EmailContentConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.EmailContentConfigConvertor"/>
+<bean name="ExtraInsertConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ExtraInsertConfigConvertor"/>
+<bean name="GSTProdDocReplaceConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.GSTProdDocReplaceConfigConvertor"/>
+<bean name="GSTProducerConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.GSTProducerConfigConvertor"/>
+<bean name="ImpNoticeConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ImpNoticeConfigConvertor"/>
+<bean name="LetterAttributeConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.LetterAttributeConfigConvertor"/>
+<bean name="LetterConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.LetterConfigConvertor"/>
+<bean name="ProdEmailExpConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ProdEmailExpConfigConvertor"/>
+<bean name="ProdSMSExpConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ProdSMSExpConfigConvertor"/>
+<bean name="ProdSubTypeConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ProdSubTypeConfigConvertor"/>
+<bean name="ProducerExpConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.ProducerExpConfigConvertor"/>
+<bean name="SMSContentConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.SMSContentConfigConvertor"/>
+<bean name="VoucherConfigConvertor" class="com.ebao.aig.sg.fulfillment.rules.upload.mapping.convertor.VoucherConfigConvertor"/>
+</beans>

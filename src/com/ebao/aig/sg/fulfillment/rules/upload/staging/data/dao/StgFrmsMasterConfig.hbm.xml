@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.gcs.tmp.data.dao.StgFrmsMasterConfig"
+    table="STG_FRMS_MASTER_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_FRMS_MASTER_CONFIG__RULE_I</param>
+        </generator>
+    </id>
+
+    <property
+        name="transactionType"
+        type="java.lang.String"
+        column="TRANSACTION_TYPE"
+        length="1000"
+    />
+    <property
+        name="documentType"
+        type="java.lang.String"
+        column="DOCUMENT_TYPE"
+        length="1000"
+    />
+    <property
+        name="lobId"
+        type="java.lang.String"
+        column="LOB_ID"
+        length="1000"
+    />
+    <property
+        name="productCode"
+        type="java.lang.String"
+        column="PRODUCT_CODE"
+        length="1000"
+    />
+    <property
+        name="planGroupId"
+        type="java.lang.String"
+        column="PLAN_GROUP_ID"
+        length="1000"
+    />
+    <property
+        name="planName"
+        type="java.lang.String"
+        column="PLAN_NAME"
+        length="1000"
+    />
+    <property
+        name="effectiveDate"
+        type="java.util.Date"
+        column="EFFECTIVE_DATE"
+        length="7"
+    />
+    <property
+        name="expiryDate"
+        type="java.util.Date"
+        column="EXPIRY_DATE"
+        length="7"
+    />
+    <property
+        name="statusId"
+        type="java.lang.String"
+        column="STATUS_ID"
+        length="1000"
+    />
+    <property
+        name="priority"
+        type="java.lang.String"
+        column="PRIORITY"
+        length="1000"
+    />
+    <property
+        name="cvrTypeRuleAplcbl"
+        type="java.lang.String"
+        column="CVR_TYPE_RULE_APLCBL"
+        length="1000"
+    />
+    <property
+        name="platformSpcRuleChk"
+        type="java.lang.String"
+        column="PLATFORM_SPC_RULE_CHK"
+        length="1000"
+    />
+    <property
+        name="producerRuleChk"
+        type="java.lang.String"
+        column="PRODUCER_RULE_CHK"
+        length="1000"
+    />
+    <property
+        name="autoSpcRuleChk"
+        type="java.lang.String"
+        column="AUTO_SPC_RULE_CHK"
+        length="1000"
+    />
+    <property
+        name="voucherAplcbl"
+        type="java.lang.String"
+        column="VOUCHER_APLCBL"
+        length="1000"
+    />
+    <property
+        name="checkCampaign"
+        type="java.lang.String"
+        column="CHECK_CAMPAIGN"
+        length="1000"
+    />
+    <property
+        name="producerExpChk"
+        type="java.lang.String"
+        column="PRODUCER_EXP_CHK"
+        length="1000"
+    />
+    <property
+        name="gstProducerChk"
+        type="java.lang.String"
+        column="GST_PRODUCER_CHK"
+        length="1000"
+    />
+    <property
+        name="dnmChk"
+        type="java.lang.String"
+        column="DNM_CHK"
+        length="1000"
+    />
+    <property
+        name="ruleDescription"
+        type="java.lang.String"
+        column="RULE_DESCRIPTION"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,5 @@
+A,emailId
+B,emailCode
+C,emailName
+D,emailContent
+E,recipient

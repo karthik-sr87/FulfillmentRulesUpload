@@ -1,0 +1,9 @@
+B,custEmailExpId
+C,lobCode
+D,productCode
+E,planGroupId
+F,plans
+G,producerType
+H,producerCodeFrom
+I,producerCodeTo
+J,producersExcluded

@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgSmsContentConfig"
+    table="T_SG_SMS_CONTENT_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="smsId"
+        type="java.lang.Long"
+        column="SMS_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_SMS_CONTENT_CONFIG__SMS_I</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="smsCode"
+        type="java.lang.String"
+        column="SMS_CODE"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="smsName"
+        type="java.lang.String"
+        column="SMS_NAME"
+        not-null="true"
+        length="30"
+    />
+    <property
+        name="recipient"
+        type="java.lang.Integer"
+        column="RECIPIENT"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="smsContent"
+        type="java.lang.String"
+        column="SMS_CONTENT"
+        not-null="true"
+        length="200"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="default-value">	new java.util.Date()
+</meta>
+    </property>
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        not-null="true"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>

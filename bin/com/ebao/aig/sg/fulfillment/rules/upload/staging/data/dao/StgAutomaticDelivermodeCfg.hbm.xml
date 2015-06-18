@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.staging.data.vo.StgAutomaticDelivermodeCfg"
+    table="STG_AUTOMATIC_DELIVERMODE_CFG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <composite-id>
+        <key-property
+            name="ruleId"
+            column="RULE_ID"
+            type="java.lang.Long"
+            length="10"
+        />
+        <key-property
+            name="automaticRuleId"
+            column="AUTOMATIC_RULE_ID"
+            type="java.lang.Long"
+            length="10"
+        />
+        <key-property
+            name="userGroup"
+            column="USER_GROUP"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="docClubType"
+            column="DOC_CLUB_TYPE"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="autoDeliver"
+            column="AUTO_DELIVER"
+            type="java.lang.String"
+            length="1000"
+        />
+        <key-property
+            name="autoDeliverMode"
+            column="AUTO_DELIVER_MODE"
+            type="java.lang.String"
+            length="1000"
+        />
+    </composite-id>
+
+
+</class>
+</hibernate-mapping>

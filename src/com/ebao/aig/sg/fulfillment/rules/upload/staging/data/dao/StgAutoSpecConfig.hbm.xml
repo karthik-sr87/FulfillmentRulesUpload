@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.staging.data.vo.StgAutoSpecConfig"
+    table="STG_AUTO_SPEC_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="autoRuleId"
+        type="java.lang.Long"
+        column="AUTO_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">STG_AUTO_SPEC_CONFIG__AUTO_RUL</param>
+        </generator>
+    </id>
+
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="vehicleAgeFrom"
+        type="java.lang.String"
+        column="VEHICLE_AGE_FROM"
+        length="1000"
+    />
+    <property
+        name="vehicleAgeTo"
+        type="java.lang.String"
+        column="VEHICLE_AGE_TO"
+        length="1000"
+    />
+    <property
+        name="ncdFrom"
+        type="java.lang.String"
+        column="NCD_FROM"
+        length="1000"
+    />
+    <property
+        name="ncdTo"
+        type="java.lang.String"
+        column="NCD_TO"
+        length="1000"
+    />
+    <property
+        name="premiumFrom"
+        type="java.math.BigDecimal"
+        column="PREMIUM_FROM"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="premiumTo"
+        type="java.math.BigDecimal"
+        column="PREMIUM_TO"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="vehicleType"
+        type="java.lang.String"
+        column="VEHICLE_TYPE"
+        length="1000"
+    />
+    <property
+        name="bubbleBoxLetter"
+        type="java.lang.String"
+        column="BUBBLE_BOX_LETTER"
+        length="1000"
+    />
+    <property
+        name="imprtNoticeFlag"
+        type="java.lang.String"
+        column="IMPRT_NOTICE_FLAG"
+        length="1000"
+    />
+    <property
+        name="autoRuleDescription"
+        type="java.lang.String"
+        column="AUTO_RULE_DESCRIPTION"
+        length="1000"
+    />
+
+</class>
+</hibernate-mapping>

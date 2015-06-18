@@ -1,0 +1,6 @@
+B,producerListId
+C,producerSubType
+D,producerCodeFrom
+E,producerCodeTo
+F,effectiveDate
+G,expiryDate

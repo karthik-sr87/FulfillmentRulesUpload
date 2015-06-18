@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgAutoSpecConfig"
+    table="T_SG_AUTO_SPEC_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="autoRuleId"
+        type="java.lang.Long"
+        column="AUTO_RULE_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_AUTO_SPEC_CONFIG__AUTO_RU</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="ruleId"
+        type="java.lang.Long"
+        column="RULE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="vehicleAgeFrom"
+        type="java.lang.Integer"
+        column="VEHICLE_AGE_FROM"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="vehicleAgeTo"
+        type="java.lang.Integer"
+        column="VEHICLE_AGE_TO"
+        not-null="true"
+        length="3"
+    />
+    <property
+        name="ncdFrom"
+        type="java.lang.Integer"
+        column="NCD_FROM"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="ncdTo"
+        type="java.lang.Integer"
+        column="NCD_TO"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="premiumFrom"
+        type="java.math.BigDecimal"
+        column="PREMIUM_FROM"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="premiumTo"
+        type="java.math.BigDecimal"
+        column="PREMIUM_TO"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="vehicleType"
+        type="java.lang.Integer"
+        column="VEHICLE_TYPE"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="bubbleBoxLetter"
+        type="java.lang.Long"
+        column="BUBBLE_BOX_LETTER"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="imprtNoticeFlag"
+        type="java.lang.Integer"
+        column="IMPRT_NOTICE_FLAG"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="default-value">	new java.util.Date()
+</meta>
+    </property>
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="autoRuleDescription"
+        type="java.lang.String"
+        column="AUTO_RULE_DESCRIPTION"
+        length="255"
+    />
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,5 @@
+B,gstProducerRuleId
+C,gstProducerCode
+D,bigProducerFlag
+E,effectiveDate
+F,expiryDate

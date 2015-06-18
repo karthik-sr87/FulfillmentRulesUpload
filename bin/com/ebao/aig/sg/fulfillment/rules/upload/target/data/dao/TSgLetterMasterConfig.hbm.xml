@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+<!--
+    Created by the Middlegen Hibernate plugin
+
+    http://boss.bekk.no/boss/middlegen/
+    http://hibernate.sourceforge.net/
+-->
+
+<class
+    name="com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgLetterMasterConfig"
+    table="T_SG_LETTER_MASTER_CONFIG"
+    dynamic-update="true"
+    dynamic-insert="true"
+    lazy="false"
+>
+
+    <id
+        name="letterId"
+        type="java.lang.Long"
+        column="LETTER_ID"
+    >
+        <generator class="sequence">
+            <param name="sequence">S_SG_LETTER_MASTER_CONFIG__LET</param>
+        </generator>
+    </id>
+
+    <property
+        column="UPDATE_TIME"
+        name="updateTime"
+        type="timestamp"
+    >    
+        <meta attribute="default-value"> com.ebao.pub.framework.AppContext.getCurrentUserLocalTime() </meta>
+    </property>
+    <property
+        name="letterCode"
+        type="java.lang.String"
+        column="LETTER_CODE"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="letterName"
+        type="java.lang.String"
+        column="LETTER_NAME"
+        not-null="true"
+        length="30"
+    />
+    <property
+        name="templateId"
+        type="java.lang.Long"
+        column="TEMPLATE_ID"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="insertTime"
+        type="java.util.Date"
+        column="INSERT_TIME"
+        not-null="true"
+        length="7"
+    >
+        <meta attribute="default-value">	new java.util.Date()
+</meta>
+    </property>
+    <property
+        name="insertedBy"
+        type="java.lang.Long"
+        column="INSERTED_BY"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updatedBy"
+        type="java.lang.Long"
+        column="UPDATED_BY"
+        not-null="true"
+        length="10"
+    />
+
+</class>
+</hibernate-mapping>
