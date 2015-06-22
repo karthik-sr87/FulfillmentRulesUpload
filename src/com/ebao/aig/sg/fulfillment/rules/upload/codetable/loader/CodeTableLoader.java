@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -19,7 +18,6 @@ import org.apache.commons.logging.LogFactory;
 
 import com.ebao.foundation.common.config.Env;
 import com.ebao.foundation.common.lang.StringUtils;
-import com.ebao.pub.framework.ExceptionFactory;
 import com.ebao.pub.util.DBean;
 
 
@@ -28,6 +26,7 @@ public class CodeTableLoader {
 	private static final Log LOG = LogFactory.getLog(CodeTableLoader.class);
 	
 	public static Map codeTablesMap;
+	public static Map codeTableVOMap;
 	public static Map fieldCodeTableMap;
 	
 	public static Map loadCodeTables(InputStream is)throws Exception{
@@ -42,7 +41,7 @@ public class CodeTableLoader {
 		return codeTableMap;
 	}
 	
-	public static Map retieveCodeTableValues(CodeTableVO codeTableVO)throws Exception{
+	public static Map retieveCodeTableValues(CodeTableVO codeTableVO){
 		 DBean db = new DBean();
 		 Map codeTableValueMap = new LinkedHashMap();
 			PreparedStatement ps = null;
@@ -65,10 +64,8 @@ public class CodeTableLoader {
 		    	  codeTableValueMap.put(rs.getString(1), rs.getString(2));
 		      }
 			  
-			} catch (SQLException e) {
+			} catch (Exception e) {
 			  LOG.error("Unable to retrive code table values for table "+codeTableVO.getTableName()+". Cause : "+e.getMessage());
-			} catch (ClassNotFoundException e) {
-			  throw ExceptionFactory.parse(e);
 			} finally {
 			  DBean.closeAll(rs, ps, db);
 			}
@@ -77,6 +74,7 @@ public class CodeTableLoader {
 	
 	public static List readCodeTablePropertyFile(InputStream is)throws Exception{
 		BufferedReader br = null;
+		codeTableVOMap = new LinkedHashMap();
 		List codeTableList = new ArrayList();
 		try {
  			String sCurrentLine;
@@ -91,6 +89,7 @@ public class CodeTableLoader {
 					codeTableVO.setIdColumnName(columns[1]);
 					codeTableVO.setDescColumnName(columns[2]);
 					codeTableList.add(codeTableVO);
+					codeTableVOMap.put(columns[0], codeTableVO);
 				}else{
 					LOG.error("Invalid Entry at Code Table Property File");
 				}
@@ -139,7 +138,6 @@ public class CodeTableLoader {
 	public static Map getFieldCodeTableMap(){
 		if(fieldCodeTableMap==null){
 			try{
-				//URL resourceURL = CodeTableLoader.class.getResource("/META-INF/icp/env/FieldCodeTableMapping.txt");
 				String fieldCodeTableFile = Env.getValue("FIELD_CODE_TABLE_MAPPING_FILE");
 				InputStream is = CodeTableLoader.class.getResourceAsStream(fieldCodeTableFile);
 				fieldCodeTableMap = loadFieldCodeTableMappingFile(is);
@@ -176,12 +174,20 @@ public class CodeTableLoader {
 		return tableName;
 	}
 	
-	public static Map getCodeTableMap(String keyName) {
-		Map codeTableMap;
+	public static Map getCodeTableMap(String codeTableName) {
+		Map codeTableMap = null;
 		if(codeTablesMap==null){
 			getCodeTablesMap();
 		}
-		codeTableMap = (Map) codeTablesMap.get(keyName);
+		if(codeTablesMap.containsKey(codeTableName)){
+			codeTableMap = (Map) codeTablesMap.get(codeTableName);
+		}
+		else{
+			CodeTableVO codetableVO = (CodeTableVO)codeTableVOMap.get(codeTableName);
+			codeTableMap = retieveCodeTableValues(codetableVO);
+			codeTablesMap.put(codeTableName, codeTableMap);
+		}
+			
 		return codeTableMap;
 	}
 	
@@ -203,6 +209,17 @@ public class CodeTableLoader {
 			id = getCodeTableId(tableName, desc.toLowerCase());
 		}
 		return id;
-	}	
+	}
+	
+	public static void refreshCodeTable(String codeTableName){
+		if(codeTablesMap!=null && codeTablesMap.containsKey(codeTableName)){
+			if(codeTableVOMap.containsKey(codeTableName)){
+				codeTablesMap.remove(codeTablesMap);
+				CodeTableVO codetableVO = (CodeTableVO)codeTableVOMap.get(codeTableName);
+				Map codeTableMap = retieveCodeTableValues(codetableVO);
+				codeTablesMap.put(codeTableName, codeTableMap);
+			}
+		}
+	}
 	
 }
