@@ -12,6 +12,7 @@ import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
 import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.GSTProdDocReplaceFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgGstProdReplaceDocCfg;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class GSTProdDocReplaceConfigConvertor {
@@ -29,7 +30,7 @@ public class GSTProdDocReplaceConfigConvertor {
 				TSgGstProdReplaceDocCfg configVO = convert(fieldVO);
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -45,20 +46,30 @@ public class GSTProdDocReplaceConfigConvertor {
 	public static TSgGstProdReplaceDocCfg convert(GSTProdDocReplaceFieldVO fieldVO)throws Exception{
 		TSgGstProdReplaceDocCfg configVO = new TSgGstProdReplaceDocCfg();
 		ValidationUtils util = new ValidationUtils(FieldConstants.gstDocReplaceConfigurator);
-		if(!util.nullOrEmptyCheck(FieldConstants.gstReplaceRuleId, fieldVO.getGstReplaceRuleId()))
-			configVO.setGstReplaceRuleId(Long.parseLong(fieldVO.getGstReplaceRuleId()));
-		String originalDocument = util.getIdByDesc(FieldConstants.gstOriginalDoc, fieldVO.getOriginalDocId());
-		if(!StringUtils.isNullOrEmpty(originalDocument))
-			configVO.setOriginalDocId(Long.parseLong(originalDocument));
-		String replaceDocument = util.getIdByDesc(FieldConstants.gstReplaceDoc, fieldVO.getReplacementDocId());
-		if(!StringUtils.isNullOrEmpty(replaceDocument))
-			configVO.setReplacementDocId(Long.parseLong(replaceDocument));		
-		Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getReplacementEffDate());
-		configVO.setReplacementEffDate(effDate);
-				
-		Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getReplacementExpDate());
-		configVO.setReplacementExpDate(expDate);
-		configVO.setErrorList(util.getErrorList());
+		try{
+			if(!util.nullOrEmptyCheck(FieldConstants.gstReplaceRuleId, fieldVO.getGstReplaceRuleId()))
+				configVO.setGstReplaceRuleId(Long.parseLong(fieldVO.getGstReplaceRuleId()));
+			String originalDocument = util.getIdByDesc(FieldConstants.gstOriginalDoc, fieldVO.getOriginalDocId());
+			if(!StringUtils.isNullOrEmpty(originalDocument))
+				configVO.setOriginalDocId(Long.parseLong(originalDocument));
+			String replaceDocument = util.getIdByDesc(FieldConstants.gstReplaceDoc, fieldVO.getReplacementDocId());
+			if(!StringUtils.isNullOrEmpty(replaceDocument))
+				configVO.setReplacementDocId(Long.parseLong(replaceDocument));		
+			Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getReplacementEffDate());
+			configVO.setReplacementEffDate(effDate);
+					
+			Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getReplacementExpDate());
+			configVO.setReplacementExpDate(expDate);
+		}catch(Exception ex){
+			ErrorCodeVO errorVo = new ErrorCodeVO();
+			//errorVo.setRuleId(configVO.getRuleId());
+			errorVo.setModuleName(FieldConstants.gstDocReplaceConfigurator);
+			errorVo.setFieldName(FieldConstants.gstReplaceRuleId);
+			errorVo.setErrorDesc(ex.getMessage());
+			util.getErrorList().add(errorVo);
+		}finally{
+			configVO.setErrorList(util.getErrorList());
+		}
 		return configVO;
 	}
 	

@@ -53,7 +53,8 @@ public class FRMSVOToConfigVOConvertor {
 				validator.setConfigVO(configVO);
 				TSgFrmsMasterConfig MasterConfigVO = validator.validateMasterConfigRule();
 				configVOList.add(MasterConfigVO);
-				if(validator.getErrorList()!=null){
+				List errorList = validator.getErrorList();
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = validator.getErrorList().iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add((ErrorCodeVO)errorListItr.next());

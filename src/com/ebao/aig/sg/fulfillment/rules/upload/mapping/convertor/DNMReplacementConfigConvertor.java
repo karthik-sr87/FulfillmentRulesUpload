@@ -9,11 +9,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
-import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.CustSMSExpFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.DNMReplaceLetterFieldVO;
-import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgCustSmsExcepConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgDnmReplaceLetterConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class DNMReplacementConfigConvertor {
@@ -32,7 +31,7 @@ public class DNMReplacementConfigConvertor {
 				TSgDnmReplaceLetterConfig configVO = convert(fieldVO);
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -48,21 +47,32 @@ public class DNMReplacementConfigConvertor {
 	public static TSgDnmReplaceLetterConfig convert(DNMReplaceLetterFieldVO fieldVO)throws Exception{
 		TSgDnmReplaceLetterConfig configVO = new TSgDnmReplaceLetterConfig();
 		ValidationUtils util = new ValidationUtils(FieldConstants.dnmReplaceConfigurator);
-		if(!util.nullOrEmptyCheck(FieldConstants.dnmReplaceId, fieldVO.getDnmReplId()))
-			configVO.setDnmReplId(Long.parseLong(fieldVO.getDnmReplId()));
-		String originalLettter = util.getIdByDesc(FieldConstants.dnmOriginalLetter, fieldVO.getOriginalLetter());
-		if(!StringUtils.isNullOrEmpty(originalLettter))
-			configVO.setOriginalLetter(Long.parseLong(originalLettter));
-		String replaceLettter = util.getIdByDesc(FieldConstants.dnmReplaceLetter, fieldVO.getReplacementLetter());
-		if(!StringUtils.isNullOrEmpty(replaceLettter))
-			configVO.setReplacementLetter(Long.parseLong(replaceLettter));
-		
-		Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getReplacementEffDate());
-		configVO.setReplacementEffDate(effDate);
-				
-		Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getReplacementExpDate());
-		configVO.setReplacementExpDate(expDate);
-		configVO.setErrorList(util.getErrorList());
+		try{
+			if(!util.nullOrEmptyCheck(FieldConstants.dnmReplaceId, fieldVO.getDnmReplId()))
+				configVO.setDnmReplId(Long.parseLong(fieldVO.getDnmReplId()));
+			String originalLettter = util.getIdByDesc(FieldConstants.dnmOriginalLetter, fieldVO.getOriginalLetter());
+			if(!StringUtils.isNullOrEmpty(originalLettter))
+				configVO.setOriginalLetter(Long.parseLong(originalLettter));
+			String replaceLettter = util.getIdByDesc(FieldConstants.dnmReplaceLetter, fieldVO.getReplacementLetter());
+			if(!StringUtils.isNullOrEmpty(replaceLettter))
+				configVO.setReplacementLetter(Long.parseLong(replaceLettter));
+			
+			Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getReplacementEffDate());
+			configVO.setReplacementEffDate(effDate);
+					
+			Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getReplacementExpDate());
+			configVO.setReplacementExpDate(expDate);
+		}
+		catch(Exception ex){
+			ErrorCodeVO errorVo = new ErrorCodeVO();
+			//errorVo.setRuleId(configVO.getRuleId());
+			errorVo.setModuleName(FieldConstants.dnmReplaceConfigurator);
+			errorVo.setFieldName(FieldConstants.dnmReplaceId);
+			errorVo.setErrorDesc(ex.getMessage());
+			util.getErrorList().add(errorVo);
+		}finally{
+			configVO.setErrorList(util.getErrorList());
+		}
 		return configVO;
 	}
 	

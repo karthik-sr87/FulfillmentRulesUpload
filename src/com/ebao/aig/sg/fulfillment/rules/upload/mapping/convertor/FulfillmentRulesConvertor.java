@@ -123,7 +123,7 @@ public class FulfillmentRulesConvertor {
 			saver.saveRules(convertorVO.getConfigVOList());
 		}
 		if(modules.getLetterAttrFieldVOList()!=null){
-			ConvertorVO convertorVO = ProdEmailExpConfigConvertor.convertor(modules.getLetterAttrFieldVOList());
+			ConvertorVO convertorVO = LetterAttributeConfigConvertor.convertor(modules.getLetterAttrFieldVOList());
 			masterErrorMap.put(FieldConstants.letterAttributeConfigurator, convertorVO.getMasterErrorList());
 			convertModules.setLetterAttrFieldVOList(convertorVO.getConfigVOList());
 			LetterAttrConfigRulesSaver saver = new LetterAttrConfigRulesSaver();

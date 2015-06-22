@@ -15,6 +15,7 @@ import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.ExtraInsertFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgExtraInsertConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgExtraInsertDataElement;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class ExtraInsertConfigConvertor {
@@ -38,7 +39,7 @@ public class ExtraInsertConfigConvertor {
 				TSgExtraInsertConfig configVO = (TSgExtraInsertConfig)configVOMapItr.next();
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -57,33 +58,42 @@ public class ExtraInsertConfigConvertor {
 		if(util.nullOrEmptyCheck(FieldConstants.extraInsId, extraInsId)){
 			TSgExtraInsertConfig configVO = new TSgExtraInsertConfig();
 			List dataElementList = new ArrayList();
-			if(extraInsertMap.containsKey(extraInsId)){
-				configVO = (TSgExtraInsertConfig) extraInsertMap.get(extraInsId);
-				if(configVO.getDataElementList()!=null)
-					dataElementList = configVO.getDataElementList();
-			}
-			else{
-				configVO.setExtraInsertId(Long.parseLong(extraInsId));
-				if(!util.nullOrEmptyCheck(FieldConstants.extraInsCode, fieldVO.getExtraInsertCode()))
-					configVO.setExtraInsertCode(fieldVO.getExtraInsertCode());
-				if(!util.nullOrEmptyCheck(FieldConstants.extraInsName, fieldVO.getExtraInsertName()))
-					configVO.setExtraInsertName(fieldVO.getExtraInsertName());
-				Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getEffectiveDate());
-				configVO.setEffectiveDate(effDate);
-				Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getExpiryDate());
-				configVO.setExpiryDate(expDate);
-			}
-				
-				TSgExtraInsertDataElement dataElementConfigVO = new TSgExtraInsertDataElement();
-				dataElementConfigVO.setExtraInsertId(Long.parseLong(extraInsId));
-				String dataElementId = util.getIdByDesc(FieldConstants.dataElementName, fieldVO.getDataElementId());
-				if(!StringUtils.isNullOrEmpty(dataElementId))
-					dataElementConfigVO.setDataElementId(Long.parseLong(dataElementId));
-				dataElementList.add(dataElementConfigVO);
-				configVO.setDataElementList(dataElementList);
+			try{
+				if(extraInsertMap.containsKey(extraInsId)){
+					configVO = (TSgExtraInsertConfig) extraInsertMap.get(extraInsId);
+					if(configVO.getDataElementList()!=null)
+						dataElementList = configVO.getDataElementList();
+				}
+				else{
+					configVO.setExtraInsertId(Long.parseLong(extraInsId));
+					if(!util.nullOrEmptyCheck(FieldConstants.extraInsCode, fieldVO.getExtraInsertCode()))
+						configVO.setExtraInsertCode(fieldVO.getExtraInsertCode());
+					if(!util.nullOrEmptyCheck(FieldConstants.extraInsName, fieldVO.getExtraInsertName()))
+						configVO.setExtraInsertName(fieldVO.getExtraInsertName());
+					Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getEffectiveDate());
+					configVO.setEffectiveDate(effDate);
+					Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getExpiryDate());
+					configVO.setExpiryDate(expDate);
+				}
+					TSgExtraInsertDataElement dataElementConfigVO = new TSgExtraInsertDataElement();
+					dataElementConfigVO.setExtraInsertId(Long.parseLong(extraInsId));
+					String dataElementId = util.getIdByDesc(FieldConstants.dataElementName, fieldVO.getDataElementId());
+					if(!StringUtils.isNullOrEmpty(dataElementId))
+						dataElementConfigVO.setDataElementId(Long.parseLong(dataElementId));
+					dataElementList.add(dataElementConfigVO);
+					configVO.setDataElementList(dataElementList);
+			}catch(Exception ex){
+				ErrorCodeVO errorVo = new ErrorCodeVO();
+				//errorVo.setRuleId(configVO.getRuleId());
+				errorVo.setModuleName(FieldConstants.extraInsConfigurator);
+				errorVo.setFieldName(FieldConstants.extraInsId);
+				errorVo.setErrorDesc(ex.getMessage());
+				util.getErrorList().add(errorVo);
+			}finally{
 				configVO.setErrorList(util.getErrorList());
 				extraInsertMap.put(extraInsId, configVO);
 			}
+		}
 		return extraInsertMap;
 	}
 

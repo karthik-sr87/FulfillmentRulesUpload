@@ -1,5 +1,5 @@
-FRMSConfigurator,6,N,1,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.FRMSFieldVO
-AutoFRMSConfigurator,7,N,1,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.FRMSFieldVO
+FRMSConfigurator,6,N,2,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.FRMSFieldVO
+AutoFRMSConfigurator,7,N,2,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.FRMSFieldVO
 CustEmailExpConfigurator,16,N,1,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.CustEmailExpFieldVO
 CustSMSExpConfigurator,10,N,1,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.CustSMSExpFieldVO
 DNMReplacementConfigurator,9,N,1,com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.DNMReplaceLetterFieldVO

@@ -33,7 +33,6 @@ import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgPlatformSpecif
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgProducerSpecificConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgSmsEmailMappingConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgVoucherMappingConfig;
-import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class FRMSRulesValidator {

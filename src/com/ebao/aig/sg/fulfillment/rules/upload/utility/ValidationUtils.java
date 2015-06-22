@@ -9,8 +9,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.ebao.aig.sg.fulfillment.rules.upload.codetable.loader.CodeTableLoader;
-import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
 import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
+import com.ebao.foundation.common.config.Env;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class ValidationUtils {
@@ -19,7 +19,7 @@ public class ValidationUtils {
 	
 	private String ruleId;
 	private String moduleName;
-	private SimpleDateFormat sdf;
+	private SimpleDateFormat sdf = new SimpleDateFormat(Env.getValue("DATE_FORMAT"));
 	
 	private List errorList = new ArrayList();
 	

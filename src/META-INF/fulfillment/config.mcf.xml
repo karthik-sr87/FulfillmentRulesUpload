@@ -61,7 +61,6 @@
 		<include relative-path="/env/job.properties" />
 		<include relative-path="/config/FulfillmentConfig.properties" />
 		<include relative-path="/config/ModuleProcessorConfig.properties" />
-		<include relative-path="/mapping/ExcelSheetNoMapping.properties" />
 	</env>
 	<!--<caches>
 		<include relative-path="/cache/cache.xml" />

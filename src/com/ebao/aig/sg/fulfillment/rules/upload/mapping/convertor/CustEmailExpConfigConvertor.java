@@ -11,6 +11,7 @@ import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
 import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.CustEmailExpFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgCustEmailExcepConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class CustEmailExpConfigConvertor {
@@ -27,7 +28,7 @@ public class CustEmailExpConfigConvertor {
 				TSgCustEmailExcepConfig configVO = convert(fieldVO);
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -43,31 +44,41 @@ public class CustEmailExpConfigConvertor {
 	public static TSgCustEmailExcepConfig convert(CustEmailExpFieldVO fieldVO)throws Exception{
 		ValidationUtils util = new ValidationUtils(FieldConstants.custEmailExpConfigurator);
 		TSgCustEmailExcepConfig configVO = new TSgCustEmailExcepConfig();
-		String id = fieldVO.getCustEmailExpId();
-		if(!util.nullOrEmptyCheck(id, FieldConstants.custEmailExpId))
-			configVO.setCustEmailExpId(Long.parseLong(fieldVO.getCustEmailExpId()));
-		String lob = util.getIdByDesc(fieldVO.getLobCode(), FieldConstants.Lob);
-		if(!StringUtils.isNullOrEmpty(lob))
-			configVO.setLobCode(Long.parseLong(lob));
-		String productCode = util.getIdByDesc(fieldVO.getProductCode(), FieldConstants.Product);
-		if(!StringUtils.isNullOrEmpty(productCode))
-			configVO.setProductCode(productCode);
-		String planGroup = util.getIdByDesc(fieldVO.getPlanGroupId(), FieldConstants.PlanGroup);
-		if(!StringUtils.isNullOrEmpty(planGroup))
-			configVO.setPlanGroupId(Long.parseLong(planGroup));
-		String plan = util.getIdByDesc(fieldVO.getPlans(), FieldConstants.Plan);
-		if(!StringUtils.isNullOrEmpty(plan))
-			configVO.setPlans(Long.parseLong(plan));
-		if(!StringUtils.isNullOrEmpty(fieldVO.getProducerType())){
-			configVO.setProducerType(Long.parseLong(fieldVO.getProducerType()));
+		try{
+			String id = fieldVO.getCustEmailExpId();
+			if(!util.nullOrEmptyCheck(id, FieldConstants.custEmailExpId))
+				configVO.setCustEmailExpId(Long.parseLong(fieldVO.getCustEmailExpId()));
+			String lob = util.getIdByDesc(fieldVO.getLobCode(), FieldConstants.Lob);
+			if(!StringUtils.isNullOrEmpty(lob))
+				configVO.setLobCode(Long.parseLong(lob));
+			String productCode = util.getIdByDesc(fieldVO.getProductCode(), FieldConstants.Product);
+			if(!StringUtils.isNullOrEmpty(productCode))
+				configVO.setProductCode(productCode);
+			String planGroup = util.getIdByDesc(fieldVO.getPlanGroupId(), FieldConstants.PlanGroup);
+			if(!StringUtils.isNullOrEmpty(planGroup))
+				configVO.setPlanGroupId(Long.parseLong(planGroup));
+			String plan = util.getIdByDesc(fieldVO.getPlans(), FieldConstants.Plan);
+			if(!StringUtils.isNullOrEmpty(plan))
+				configVO.setPlans(Long.parseLong(plan));
+			if(!StringUtils.isNullOrEmpty(fieldVO.getProducerType())){
+				configVO.setProducerType(Long.parseLong(fieldVO.getProducerType()));
+			}
+			if(!StringUtils.isNullOrEmpty(fieldVO.getProducerCodeFrom()))
+				configVO.setProducerCodeFrom(fieldVO.getProducerCodeFrom());
+			if(!StringUtils.isNullOrEmpty(fieldVO.getProducerCodeTo()))
+				configVO.setProducerCodeTo(fieldVO.getProducerCodeTo());
+			if(!StringUtils.isNullOrEmpty(fieldVO.getProducersExcluded()))
+				configVO.setProducersExcluded(fieldVO.getProducersExcluded());
+		}catch(Exception ex){
+			ErrorCodeVO errorVo = new ErrorCodeVO();
+			//errorVo.setRuleId(configVO.getRuleId());
+			errorVo.setModuleName(FieldConstants.custEmailExpConfigurator);
+			errorVo.setFieldName(FieldConstants.custEmailExpId);
+			errorVo.setErrorDesc(ex.getMessage());
+			util.getErrorList().add(errorVo);
+		}finally{
+			configVO.setErrorList(util.getErrorList());
 		}
-		if(!StringUtils.isNullOrEmpty(fieldVO.getProducerCodeFrom()))
-			configVO.setProducerCodeFrom(fieldVO.getProducerCodeFrom());
-		if(!StringUtils.isNullOrEmpty(fieldVO.getProducerCodeTo()))
-			configVO.setProducerCodeTo(fieldVO.getProducerCodeTo());
-		if(!StringUtils.isNullOrEmpty(fieldVO.getProducersExcluded()))
-			configVO.setProducersExcluded(fieldVO.getProducersExcluded());
-		configVO.setErrorList(util.getErrorList());
 		return configVO;
 	}
 	

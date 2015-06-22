@@ -23,7 +23,7 @@ public class RulesSheetProcessor {
 	    // Excel Cell Mapping
 		List configList = null;
 	    Map<String, String> cellMapping = MappingFileLoader.getModuleConfigMap(detailsVO.getModuleName());
-	    LOG.info("Mapping Count : "+cellMapping.size());
+	    LOG.info(detailsVO.getModuleName()+" Mapping Count : "+cellMapping.size());
 
 	    try {
 	    	
@@ -38,7 +38,7 @@ public class RulesSheetProcessor {
 	        // No data present
 	        LOG.error(detailsVO.getModuleName()+" Config Rule List is empty");
 	      } else {
-	        LOG.info(workSheetHandler.getValueList().size()+ " no. of records read from "+detailsVO.getModuleName()+" worksheet successfully.");
+	        LOG.info(workSheetHandler.getValueList().size()+ " records read from "+detailsVO.getModuleName()+" worksheet successfully.");
 	        configList = workSheetHandler.getValueList();
 	        //LOG.info("Config Object Count : "+configList.size());
 	      }

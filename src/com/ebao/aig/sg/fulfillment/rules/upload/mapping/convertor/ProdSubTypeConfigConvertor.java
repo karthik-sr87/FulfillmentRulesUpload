@@ -12,6 +12,7 @@ import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
 import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.ProdSubTypeConfigFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgProducerSubTypeConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class ProdSubTypeConfigConvertor {
@@ -30,7 +31,7 @@ public class ProdSubTypeConfigConvertor {
 				TSgProducerSubTypeConfig configVO = convert(fieldVO);
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -46,22 +47,32 @@ public class ProdSubTypeConfigConvertor {
 	public static TSgProducerSubTypeConfig convert(ProdSubTypeConfigFieldVO fieldVO)throws Exception{
 		TSgProducerSubTypeConfig configVO = new TSgProducerSubTypeConfig();
 		ValidationUtils util = new ValidationUtils(FieldConstants.prodSubTypeConfigurator);
-		if(!util.nullOrEmptyCheck(FieldConstants.prodSubTypeListId, fieldVO.getProducerListId()))
-			configVO.setProducerListId(Long.parseLong(fieldVO.getProducerListId()));
-		if(!util.nullOrEmptyCheck(FieldConstants.prodCodeFrom, fieldVO.getProducerCodeFrom()))
-			configVO.setProducerCodeFrom(fieldVO.getProducerCodeFrom());
-		if(!util.nullOrEmptyCheck(FieldConstants.prodCodeTo, fieldVO.getProducerCodeTo()))
-			configVO.setProducerCodeTo(fieldVO.getProducerCodeTo());
-		String prodSubType = util.getIdByDesc(FieldConstants.prodSubType, fieldVO.getProducerSubType());
-		if(!StringUtils.isNullOrEmpty(prodSubType))
-			configVO.setProducerSubType(Integer.parseInt(prodSubType));
-			
-		Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getEffectiveDate());
-		configVO.setEffectiveDate(effDate);
+		try{
+			if(!util.nullOrEmptyCheck(FieldConstants.prodSubTypeListId, fieldVO.getProducerListId()))
+				configVO.setProducerListId(Long.parseLong(fieldVO.getProducerListId()));
+			if(!util.nullOrEmptyCheck(FieldConstants.prodCodeFrom, fieldVO.getProducerCodeFrom()))
+				configVO.setProducerCodeFrom(fieldVO.getProducerCodeFrom());
+			if(!util.nullOrEmptyCheck(FieldConstants.prodCodeTo, fieldVO.getProducerCodeTo()))
+				configVO.setProducerCodeTo(fieldVO.getProducerCodeTo());
+			String prodSubType = util.getIdByDesc(FieldConstants.prodSubType, fieldVO.getProducerSubType());
+			if(!StringUtils.isNullOrEmpty(prodSubType))
+				configVO.setProducerSubType(Integer.parseInt(prodSubType));
 				
-		Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getExpiryDate());
-		configVO.setExpiryDate(expDate);
-		configVO.setErrorList(util.getErrorList());
+			Date effDate = util.convertStringToDate(FieldConstants.effectiveDate, fieldVO.getEffectiveDate());
+			configVO.setEffectiveDate(effDate);
+					
+			Date expDate = util.convertStringToDate(FieldConstants.expiryDate, fieldVO.getExpiryDate());
+			configVO.setExpiryDate(expDate);
+		}catch(Exception ex){
+			ErrorCodeVO errorVo = new ErrorCodeVO();
+			//errorVo.setRuleId(configVO.getRuleId());
+			errorVo.setModuleName(FieldConstants.prodSubTypeConfigurator);
+			errorVo.setFieldName(FieldConstants.prodSubTypeListId);
+			errorVo.setErrorDesc(ex.getMessage());
+			util.getErrorList().add(errorVo);
+		}finally{
+			configVO.setErrorList(util.getErrorList());
+		}
 		return configVO;
 	}
 	

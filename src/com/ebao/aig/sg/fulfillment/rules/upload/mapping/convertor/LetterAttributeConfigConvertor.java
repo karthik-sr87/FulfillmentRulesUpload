@@ -8,11 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.ebao.aig.sg.fulfillment.rules.upload.constants.FieldConstants;
-import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.GSTProducerFieldVO;
 import com.ebao.aig.sg.fulfillment.rules.upload.parser.vo.LetterAttributeFieldVO;
-import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgGstProducerConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.target.data.vo.TSgLetterAttributeConfig;
 import com.ebao.aig.sg.fulfillment.rules.upload.utility.ValidationUtils;
+import com.ebao.aig.sg.fulfillment.rules.upload.validator.ErrorCodeVO;
 import com.ebao.foundation.common.lang.StringUtils;
 
 public class LetterAttributeConfigConvertor {
@@ -30,7 +29,7 @@ public class LetterAttributeConfigConvertor {
 				TSgLetterAttributeConfig configVO = convert(fieldVO);
 				configVOList.add(configVO);
 				List errorList = configVO.getErrorList();
-				if(errorList!=null){
+				if(errorList!=null && !errorList.isEmpty()){
 					Iterator errorListItr = errorList.iterator();
 					while(errorListItr.hasNext()){
 						masterErrorList.add(errorListItr.next());
@@ -46,18 +45,28 @@ public class LetterAttributeConfigConvertor {
 	public static TSgLetterAttributeConfig convert(LetterAttributeFieldVO fieldVO)throws Exception{
 		TSgLetterAttributeConfig configVO = new TSgLetterAttributeConfig();
 		ValidationUtils util = new ValidationUtils(FieldConstants.letterAttributeConfigurator);
-		if(!util.nullOrEmptyCheck(FieldConstants.letterAttrId, fieldVO.getLetterAttributeId()))
-			configVO.setLetterAttributeId(Long.parseLong(fieldVO.getLetterAttributeId()));
-		if(!util.nullOrEmptyCheck(FieldConstants.letterRuleId, fieldVO.getLetterId()))
-			configVO.setLetterId(Long.parseLong(fieldVO.getLetterId()));
-		if(!util.nullOrEmptyCheck(FieldConstants.letterAttrName, fieldVO.getLetterAttributeName()))
-			configVO.setLetterAttributeName(fieldVO.getLetterAttributeName());
-		String id = util.getIdByDesc(FieldConstants.letterAttrType, fieldVO.getLetterAttributeType());
-		if(!StringUtils.isNullOrEmpty(id))
-			configVO.setLetterAttributeType(Integer.parseInt(id));
-		if(!util.nullOrEmptyCheck(FieldConstants.letterContent, fieldVO.getContent()))
-			configVO.setContent(fieldVO.getContent());
-		configVO.setErrorList(util.getErrorList());
+		try{
+			if(!util.nullOrEmptyCheck(FieldConstants.letterAttrId, fieldVO.getLetterAttributeId()))
+				configVO.setLetterAttributeId(Long.parseLong(fieldVO.getLetterAttributeId()));
+			if(!util.nullOrEmptyCheck(FieldConstants.letterRuleId, fieldVO.getLetterId()))
+				configVO.setLetterId(Long.parseLong(fieldVO.getLetterId()));
+			if(!util.nullOrEmptyCheck(FieldConstants.letterAttrName, fieldVO.getLetterAttributeName()))
+				configVO.setLetterAttributeName(fieldVO.getLetterAttributeName());
+			String id = util.getIdByDesc(FieldConstants.letterAttrType, fieldVO.getLetterAttributeType());
+			if(!StringUtils.isNullOrEmpty(id))
+				configVO.setLetterAttributeType(Integer.parseInt(id));
+			if(!util.nullOrEmptyCheck(FieldConstants.letterContent, fieldVO.getContent()))
+				configVO.setContent(fieldVO.getContent());
+		}catch(Exception ex){
+			ErrorCodeVO errorVo = new ErrorCodeVO();
+			//errorVo.setRuleId(configVO.getRuleId());
+			errorVo.setModuleName(FieldConstants.letterAttributeConfigurator);
+			errorVo.setFieldName(FieldConstants.letterAttrId);
+			errorVo.setErrorDesc(ex.getMessage());
+			util.getErrorList().add(errorVo);
+		}finally{
+			configVO.setErrorList(util.getErrorList());
+		}
 		return configVO;
 	}
 	
